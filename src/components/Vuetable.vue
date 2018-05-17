@@ -26,9 +26,10 @@
                 :key="fieldIndex"
                 :style="{width: field.width}"
                 :class="['vuetable-th-slot-'+extractArgs(field.name), field.titleClass, sortClass(field), {'sortable': isSortable(field)}]"
-                v-html="renderTitle(field)"
                 @click="orderBy(field, $event)"
-              ></th>
+              >
+                <slot :name="extractArgs(field.name) + ':header'"></slot>
+              </th>
               <th v-if="extractName(field.name) == '__sequence'"
                 :key="fieldIndex"
                 :style="{width: field.width}"
